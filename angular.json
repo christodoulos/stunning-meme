@@ -119,6 +119,7 @@
     }
   },
   "cli": {
+    "analytics": "e2554fb4-583f-4630-bae3-2410ae75bf80",
     "defaultCollection": "@nrwl/angular",
     "packageManager": "yarn"
   },

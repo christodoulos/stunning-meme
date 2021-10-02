@@ -1,7 +1,8 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'nocode-code-toolbar',
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'code-toolbar',
   templateUrl: './code-toolbar.component.html',
   styleUrls: ['./code-toolbar.component.css'],
 })

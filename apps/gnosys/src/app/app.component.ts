@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'gnosys';
+
+  onAction(action: string) {
+    console.log(action);
+  }
+
+  onFilename(filename: string) {
+    console.log(filename);
+  }
 }

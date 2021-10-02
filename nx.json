@@ -33,6 +33,9 @@
     "gnosys-e2e": {
       "tags": [],
       "implicitDependencies": ["gnosys"]
+    },
+    "ui": {
+      "tags": []
     }
   }
 }

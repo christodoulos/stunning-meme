@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -8,6 +8,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class FileNameComponent {
   @Output() filename: EventEmitter<string> = new EventEmitter<string>();
+  @Input() danger = false;
   onChange(value: string) {
     this.filename.emit(value);
   }

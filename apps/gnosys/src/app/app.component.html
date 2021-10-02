@@ -1,6 +1,9 @@
 <div class="px-10 py-10">
   <div class="flex flex-row items-center justify-around border">
     <code-toolbar (action)="onAction($event)"></code-toolbar>
-    <file-name (filename)="onFilename($event)"></file-name>
+    <file-name
+      [danger]="filename === 'lalakis'"
+      (filename)="onFilename($event)"
+    ></file-name>
   </div>
 </div>

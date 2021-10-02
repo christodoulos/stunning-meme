@@ -1,2 +1,2 @@
 export * from './lib/ui.module';
-export * from '../svg/all';
+export * from './lib/code-toolbar/code-toolbar.component';

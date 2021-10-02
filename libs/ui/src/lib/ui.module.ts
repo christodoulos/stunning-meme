@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SvgIconsModule } from '@ngneat/svg-icon';
-import { allIcons } from '../../svg/all';
+import { allIcons } from '../svg/all';
 
 import { CodeToolbarComponent } from './code-toolbar/code-toolbar.component';
 

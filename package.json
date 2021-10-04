@@ -25,6 +25,7 @@
     "@codemirror/lang-python": "^0.19.2",
     "@codemirror/state": "^0.19.2",
     "@codemirror/view": "^0.19.9",
+    "@ngneat/dialog": "1.6.0",
     "@ngneat/svg-generator": "^3.2.1",
     "@ngneat/svg-icon": "^3.2.0",
     "@ngneat/tailwind": "7.0.3",

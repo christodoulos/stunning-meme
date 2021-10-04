@@ -1,5 +1,7 @@
 <div class="inline-flex items-center">
-  <label for="filename" class="mr-2 text-xs font-medium text-gray-700"
+  <label
+    for="filename"
+    class="sm:visible invisible mr-2 text-xs font-medium text-gray-700"
     >File name</label
   >
   <input
@@ -8,8 +10,8 @@
     type="text"
     name="filename"
     id="filename"
-    class="px-1 py-1 text-xs border-gray-300  {{
-      danger ? 'text-red-600' : ''
-    }}"
+    class="px-1 py-1 text-xs {{
+      danger ? 'border-red-600' : 'border-grey-300'
+    }} {{ danger ? 'text-red-600' : 'text-gray-600' }}"
   />
 </div>

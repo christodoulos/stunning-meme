@@ -39,6 +39,9 @@
     },
     "vendor": {
       "tags": []
+    },
+    "widgets": {
+      "tags": []
     }
   }
 }

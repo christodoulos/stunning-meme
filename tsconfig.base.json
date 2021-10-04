@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@nocode/ui": ["libs/ui/src/index.ts"],
-      "@nocode/vendor": ["libs/vendor/src/index.ts"]
+      "@nocode/vendor": ["libs/vendor/src/index.ts"],
+      "@nocode/widgets": ["libs/widgets/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

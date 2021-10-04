@@ -1,0 +1,20 @@
+<div class="flex flex-col sm:w-full max-w-md">
+  <div class="flex flex-row items-center justify-between">
+    <code-toolbar
+      (action)="onAction($event)"
+      class="mr-10 bg-gray-300"
+    ></code-toolbar>
+    <file-name
+      [danger]="!scriptIsSaved"
+      (filename)="onFilename($event)"
+    ></file-name>
+  </div>
+  <codemirror
+    [language]="'python'"
+    [save]="saveScript"
+    [new]="newScript"
+    (changed)="onScriptChanged()"
+    (script)="onScript($event)"
+    class="border mt-1 sm:w-full max-w-md"
+  ></codemirror>
+</div>

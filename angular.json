@@ -195,6 +195,47 @@
           }
         }
       }
+    },
+    "widgets": {
+      "projectType": "library",
+      "root": "libs/widgets",
+      "sourceRoot": "libs/widgets/src",
+      "prefix": "nocode",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/widgets"],
+          "options": {
+            "project": "libs/widgets/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/widgets/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/widgets/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/widgets"],
+          "options": {
+            "jestConfig": "libs/widgets/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/widgets/src/**/*.ts",
+              "libs/widgets/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

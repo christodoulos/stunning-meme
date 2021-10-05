@@ -1622,6 +1622,30 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
+"@datorama/akita-ng-entity-service@^6.0.0":
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/@datorama/akita-ng-entity-service/-/akita-ng-entity-service-6.2.0.tgz#c6caff8885232abe521a6926ff117b449ad4d1ba"
+  integrity sha512-bRnOmdT+aBGa5uxOi9OHmdbzB02lV7Zc8aIjjkJDHChL4G8eBc5kuJ0TTBIvHpJAnLVMg1ra2/5B8X/h2L4//g==
+
+"@datorama/akita-ng-router-store@^6.0.0":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@datorama/akita-ng-router-store/-/akita-ng-router-store-6.0.2.tgz#45b4c45150d9064aa9db8ccf639fcf073e8e5e56"
+  integrity sha512-ZdSkawattGDwg9h7Irem7KyaScKdd7iPymA5V0c/TKD9MqK2krvTCn6nOGh9UkuUjrr4QPzpNvfGUjeuHIVvTQ==
+
+"@datorama/akita-ngdevtools@^6.0.0":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@datorama/akita-ngdevtools/-/akita-ngdevtools-6.0.1.tgz#8e3a1ff00146c1e3e8c5da8e5a30445557c3c4c8"
+  integrity sha512-jEsFTHQNJwLv+bSayHyGzI6zW3tVPUpx3yrWHKQGTc2cMsbhcjuId+o/Q6VkyMzM4vew3Itasz5XrrZTooakIw==
+  dependencies:
+    rxjs "6.6.7"
+
+"@datorama/akita@^6.0.0":
+  version "6.2.3"
+  resolved "https://registry.yarnpkg.com/@datorama/akita/-/akita-6.2.3.tgz#90c42a1820b020ac09b31959fd8c533a404c80a8"
+  integrity sha512-UuFWcPmzHuWx7mDdna2LjR5tEc54JmwbEXnbRvZ39iMw8Fgo5s6/g6ZMpYzXW6xy1Ee7pCOM8dFlKs8lBlGuag==
+  dependencies:
+    schematics-utilities "^2.0.3"
+
 "@discoveryjs/json-ext@0.5.3":
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.3.tgz#90420f9f9c6d3987f176a19a7d8e764271a2f55d"
@@ -2981,6 +3005,13 @@ ajv@^8.0.0, ajv@^8.0.1:
     json-schema-traverse "^1.0.0"
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
+
+akita-ng-fire@^3.1.6:
+  version "3.1.8"
+  resolved "https://registry.yarnpkg.com/akita-ng-fire/-/akita-ng-fire-3.1.8.tgz#e3a22d3ad0f7d5fbf6b678acc5b4625a8e4d64b7"
+  integrity sha512-u9AfJAcFYIrZ1detbkK/hl3eXH/qCMnY3462TSoy1XNyiTCdTGJgKjetSzUFbJRVnv2rqT6rEdBbEPsT2lq1kw==
+  dependencies:
+    tslib "^2.0.0"
 
 alphanum-sort@^1.0.2:
   version "1.0.2"
@@ -10542,6 +10573,20 @@ schematics-utilities@2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/schematics-utilities/-/schematics-utilities-2.0.2.tgz#8b6c45ff1c09a496dd9f9a163e64ec602d72ae7d"
   integrity sha512-rf9kf76c7LvfeHGAJJNjfYeVEf8kIpaTSU4e931MohjX/o1E+sxuBAD/rIwTKE5wmcRcuRrFCuGb9jcMUZ6eeg==
+  dependencies:
+    "@angular-devkit/core" "^8.3.8"
+    "@angular-devkit/schematics" "^8.3.8"
+    "@schematics/angular" "^8.3.8"
+    "@schematics/update" "^0.803.8"
+    rxjs "^6.4.0"
+    typescript "^3.6.3"
+  optionalDependencies:
+    parse5 "^5.1.0"
+
+schematics-utilities@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/schematics-utilities/-/schematics-utilities-2.0.3.tgz#691fc5e785fae4b457d8f49c564c9364d68b8cf3"
+  integrity sha512-Elpkg3NVwAMsuo6CKi5MattjGo5ZK2F0vku1FGJAX5Fr4ebJvgKeDEn1J+rho97Ol7lM4LqeubBfJfYBTi/xYg==
   dependencies:
     "@angular-devkit/core" "^8.3.8"
     "@angular-devkit/schematics" "^8.3.8"

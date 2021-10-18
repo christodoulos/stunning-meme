@@ -7,10 +7,11 @@ import { allIcons } from '../svg/all';
 
 import { CodeToolbarComponent } from './code-toolbar/code-toolbar.component';
 import { FileNameComponent } from './file-name/file-name.component';
+import { CodemirrorComponent } from './codemirror/codemirror.component';
 
 @NgModule({
   imports: [CommonModule, FormsModule, SvgIconsModule.forChild([...allIcons])],
-  declarations: [CodeToolbarComponent, FileNameComponent],
-  exports: [CodeToolbarComponent, FileNameComponent],
+  declarations: [CodeToolbarComponent, FileNameComponent, CodemirrorComponent],
+  exports: [CodeToolbarComponent, FileNameComponent, CodemirrorComponent],
 })
 export class UiModule {}

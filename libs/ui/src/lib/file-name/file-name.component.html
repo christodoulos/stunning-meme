@@ -5,13 +5,13 @@
     >File name</label
   >
   <input
-    [ngModel]=""
-    (ngModelChange)="onChange($event)"
+    [(ngModel)]="filenameIN.name"
+    (blur)="onBlur()"
     type="text"
     name="filename"
     id="filename"
     class="px-1 py-1 text-xs {{
-      danger ? 'border-red-600' : 'border-grey-300'
-    }} {{ danger ? 'text-red-600' : 'text-gray-600' }}"
+      filenameIN.attn ? 'border-red-600' : 'border-grey-300'
+    }} {{ filenameIN.attn ? 'text-red-600' : 'text-gray-600' }}"
   />
 </div>

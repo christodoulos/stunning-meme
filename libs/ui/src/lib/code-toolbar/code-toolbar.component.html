@@ -1,9 +1,9 @@
 <div class="flex flex-row items-center max-w-min">
   <button
-    *ngFor="let action of this.actions; index as i"
-    (click)="onClick(action)"
+    *ngFor="let icon of toolbar | keyvalue: iconOrder; last as isLast"
+    (click)="onClick(icon.key)"
     class="
-      {{ i < this.actions.length - 1 ? 'mr-2' : '' }}
+      {{ isLast ? '' : 'mr-2' }}
       inline-flex
       items-center
       px-2.5
@@ -11,6 +11,6 @@
       hover:text-red-600 
     "
   >
-    <svg-icon key="{{ action }}"></svg-icon>
+    <svg-icon key="{{ icon.value.name }}"></svg-icon>
   </button>
 </div>

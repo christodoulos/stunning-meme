@@ -27,6 +27,9 @@
     ]
   },
   "projects": {
+    "auth": {
+      "tags": []
+    },
     "gnosys": {
       "tags": []
     },
@@ -35,9 +38,6 @@
       "implicitDependencies": ["gnosys"]
     },
     "ui": {
-      "tags": []
-    },
-    "vendor": {
       "tags": []
     },
     "widgets": {

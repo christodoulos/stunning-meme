@@ -1,6 +1,47 @@
 {
   "version": 1,
   "projects": {
+    "auth": {
+      "projectType": "library",
+      "root": "libs/auth",
+      "sourceRoot": "libs/auth/src",
+      "prefix": "nocode",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/auth"],
+          "options": {
+            "project": "libs/auth/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/auth/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/auth/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/auth"],
+          "options": {
+            "jestConfig": "libs/auth/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/auth/src/**/*.ts",
+              "libs/auth/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "gnosys": {
       "projectType": "application",
       "root": "apps/gnosys",
@@ -151,47 +192,6 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/ui/src/**/*.ts", "libs/ui/src/**/*.html"]
-          }
-        }
-      }
-    },
-    "vendor": {
-      "projectType": "library",
-      "root": "libs/vendor",
-      "sourceRoot": "libs/vendor/src",
-      "prefix": "nocode",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": ["dist/libs/vendor"],
-          "options": {
-            "project": "libs/vendor/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/vendor/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/vendor/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/vendor"],
-          "options": {
-            "jestConfig": "libs/vendor/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/vendor/src/**/*.ts",
-              "libs/vendor/src/**/*.html"
-            ]
           }
         }
       }

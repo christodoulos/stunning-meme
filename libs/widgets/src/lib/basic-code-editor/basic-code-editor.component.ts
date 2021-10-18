@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Icon, Filename } from '@nocode/ui';
+import { BasicCodeEditorQuery, BasicCodeEditorService } from '../widgets.state';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -7,50 +9,46 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./basic-code-editor.component.css'],
 })
 export class BasicCodeEditorComponent implements OnInit {
-  scriptName = '';
-  script: Array<string> = [];
-  scriptIsChanged = false;
+  filename: Filename = { name: '', ext: '', attn: false };
+  toolbar = new Map<string, Icon>();
 
-  scriptIsSaved = true;
-  saveScript = false;
-  newScript = false;
+  action$ = this.query.action$;
 
-  constructor() {
-    console.log();
-  }
+  constructor(
+    private service: BasicCodeEditorService,
+    private query: BasicCodeEditorQuery
+  ) {}
 
   ngOnInit(): void {
-    console.log();
+    this.toolbarInit();
+  }
+
+  toolbarInit(): void {
+    this.toolbar.set('new', { name: 'document', order: 0 });
+    this.toolbar.set('save', { name: 'download', order: 1 });
+    this.toolbar.set('load', { name: 'upload', order: 2 });
+    this.toolbar.set('run', { name: 'play', order: 3 });
+  }
+
+  onFilename(filename: Filename) {
+    this.service.updateFilename({ filename: filename });
   }
 
   onAction(action: string) {
-    switch (action) {
-      case 'document': // Click on New Document
-        this.newScript = true;
-        break;
-      case 'download': // Click on Save Document
-        this.saveScript = true;
-
-        break;
-
-      default:
-        break;
-    }
+    this.service.updateAction({ action: action });
   }
 
-  onFilename(filename: string) {
-    this.scriptName = filename;
+  onCleared() {
+    setTimeout(() => this.service.clearAction());
   }
 
-  onScriptChanged() {
-    this.scriptIsSaved = false;
-    this.newScript = false;
+  onChanged() {
+    this.service.updateChanged({ changed: true });
   }
 
   onScript(script: Array<string>) {
-    this.script = script;
-    console.log(this.script);
-    this.saveScript = false;
-    this.scriptIsSaved = true;
+    setTimeout(() =>
+      this.service.updateScript({ script: script, changed: false })
+    );
   }
 }

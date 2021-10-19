@@ -12,6 +12,7 @@ import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { RouterModule } from '@angular/router';
 import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +33,15 @@ import { environment } from '../environments/environment';
     environment.production ? [] : AkitaNgDevtools.forRoot(),
     AkitaNgRouterStoreModule,
     RouterModule.forRoot([]),
+    AngularFireModule.initializeApp({
+      apiKey: 'AIzaSyBuptTUnVYZPtrcJM8JK62KW5FAnYC21C0',
+      authDomain: 'gnosys-4572d.firebaseapp.com',
+      projectId: 'gnosys-4572d',
+      storageBucket: 'gnosys-4572d.appspot.com',
+      messagingSenderId: '111272556211',
+      appId: '1:111272556211:web:5fa3f9b275a2912a26a2c6',
+      measurementId: 'G-8CF1J5QKXC',
+    }),
   ],
   providers: [
     {

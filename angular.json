@@ -9,7 +9,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": ["dist/libs/auth"],
+          "outputs": [
+            "dist/libs/auth"
+          ],
           "options": {
             "project": "libs/auth/ng-package.json"
           },
@@ -25,7 +27,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/auth"],
+          "outputs": [
+            "coverage/libs/auth"
+          ],
           "options": {
             "jestConfig": "libs/auth/jest.config.js",
             "passWithNoTests": true
@@ -50,15 +54,22 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/gnosys",
             "index": "apps/gnosys/src/index.html",
             "main": "apps/gnosys/src/main.ts",
             "polyfills": "apps/gnosys/src/polyfills.ts",
             "tsConfig": "apps/gnosys/tsconfig.app.json",
-            "assets": ["apps/gnosys/src/favicon.ico", "apps/gnosys/src/assets"],
-            "styles": ["apps/gnosys/src/styles.css"],
+            "assets": [
+              "apps/gnosys/src/favicon.ico",
+              "apps/gnosys/src/assets"
+            ],
+            "styles": [
+              "apps/gnosys/src/styles.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -123,11 +134,17 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/gnosys"],
+          "outputs": [
+            "coverage/apps/gnosys"
+          ],
           "options": {
             "jestConfig": "apps/gnosys/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     },
@@ -151,9 +168,13 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
-            "lintFilePatterns": ["apps/gnosys-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/gnosys-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -166,7 +187,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": ["dist/libs/ui"],
+          "outputs": [
+            "dist/libs/ui"
+          ],
           "options": {
             "project": "libs/ui/ng-package.json"
           },
@@ -182,7 +205,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ui"],
+          "outputs": [
+            "coverage/libs/ui"
+          ],
           "options": {
             "jestConfig": "libs/ui/jest.config.js",
             "passWithNoTests": true
@@ -191,7 +216,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/ui/src/**/*.ts", "libs/ui/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/ui/src/**/*.ts",
+              "libs/ui/src/**/*.html"
+            ]
           }
         }
       }
@@ -204,7 +232,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": ["dist/libs/widgets"],
+          "outputs": [
+            "dist/libs/widgets"
+          ],
           "options": {
             "project": "libs/widgets/ng-package.json"
           },
@@ -220,7 +250,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/widgets"],
+          "outputs": [
+            "coverage/libs/widgets"
+          ],
           "options": {
             "jestConfig": "libs/widgets/jest.config.js",
             "passWithNoTests": true

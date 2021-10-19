@@ -1,0 +1,21 @@
+{
+  "projects": {
+    "gnosys": "gnosys-4572d"
+  },
+  "targets": {
+    "optistructure-9db13": {
+      "hosting": {
+        "gnosys": [
+          "optistructure-9db13"
+        ]
+      }
+    },
+    "gnosys-4572d": {
+      "hosting": {
+        "gnosys": [
+          "gnosys-4572d"
+        ]
+      }
+    }
+  }
+}

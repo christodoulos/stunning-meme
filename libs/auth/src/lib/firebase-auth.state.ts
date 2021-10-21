@@ -23,6 +23,7 @@ export class FirebaseUserService {
   constructor(private firebaseUserStore: FirebaseUserStore) {}
   updateUser(user: FirebaseUser) {
     this.firebaseUserStore.update({ ...user });
+    this.firebaseUserStore.setLoading(false);
   }
 }
 

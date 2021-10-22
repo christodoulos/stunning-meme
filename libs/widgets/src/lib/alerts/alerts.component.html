@@ -1,0 +1,9 @@
+<div *ngFor="let alert of alerts$ | async">
+  <!-- {{ alert.type }} {{ alert.message }} -->
+  <alert
+    [alertType]="alert.type"
+    [header]="'Welcome back!'"
+    [message]="alert.message"
+    (dismiss)="onDismiss(alert.id)"
+  ></alert>
+</div>

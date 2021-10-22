@@ -1668,6 +1668,14 @@
     enabled "2.0.x"
     kuler "^2.0.0"
 
+"@datorama/akita-ng-effects@1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@datorama/akita-ng-effects/-/akita-ng-effects-1.0.5.tgz#1946a80be68f599c53393c4aa752fd89981a95d2"
+  integrity sha512-nP5BSNY2ubOcyMFSIAjd4oyIslUVYj+H7imzoZP62w6Firt+4YZVJ3EreuVkthEVcGN0y85NqdJ4SjvWcSgGMQ==
+  dependencies:
+    ts-action "^11.0.0"
+    ts-action-operators "^9.1.1"
+
 "@datorama/akita-ng-entity-service@^6.0.0":
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/@datorama/akita-ng-entity-service/-/akita-ng-entity-service-6.2.0.tgz#c6caff8885232abe521a6926ff117b449ad4d1ba"
@@ -14278,6 +14286,16 @@ triple-beam@^1.2.0, triple-beam@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/triple-beam/-/triple-beam-1.3.0.tgz#a595214c7298db8339eeeee083e4d10bd8cb8dd9"
   integrity sha512-XrHUvV5HpdLmIj4uVMxHggLbFSZYIn7HEWsqePZcI50pco+MPqJ50wMGY794X7AOOhxOBAjbkqfAbEe/QMp2Lw==
+
+ts-action-operators@^9.1.1:
+  version "9.1.2"
+  resolved "https://registry.yarnpkg.com/ts-action-operators/-/ts-action-operators-9.1.2.tgz#269c6898d6cc87c7fc28a3780c3f700d42e2fe1c"
+  integrity sha512-DZ+sJvBdOluThwCBcCdDnz0NiVeQxEwveL+cmkJGLO1ps+x/D0xwSefmOIa1S7p2nXFHH52ZPr/8VEvxZHaNgg==
+
+ts-action@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/ts-action/-/ts-action-11.0.0.tgz#abb7f510b0d2e0b9534900cc22c45b8f7e795a3c"
+  integrity sha512-TDxvzZ5UtKsBuw0McRs/L+iASj80m60nV8EXCP680ZdIl+oRHPGnBk85sZJWXLzqQwb6yQ+CcMzPTfBr0dEaAA==
 
 ts-jest@27.0.3:
   version "27.0.3"

@@ -18,7 +18,16 @@ import { AngularFireModule } from '@angular/fire/compat';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    SvgIconsModule.forRoot(),
+    SvgIconsModule.forRoot({
+      sizes: {
+        xs: '10px',
+        sm: '12px',
+        md: '16px',
+        lg: '20px',
+        xl: '25px',
+        xxl: '30px',
+      },
+    }),
     WidgetsModule,
     DialogModule.forRoot({
       sizes: {

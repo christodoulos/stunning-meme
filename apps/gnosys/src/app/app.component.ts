@@ -9,6 +9,10 @@ import { FirebaseAuthService, FirebaseUserService } from '@nocode/auth';
 export class AppComponent {
   title = 'gnosys';
   loggedIn$ = this.auth.loggedIn$;
+
+  userMenuVisible = false;
+  overlayVisible = false;
+
   constructor(
     private auth: FirebaseAuthService,
     private service: FirebaseUserService
@@ -21,6 +25,14 @@ export class AppComponent {
         console.log('logged out');
       }
     });
+  }
+
+  toggleUserMenu() {
+    this.userMenuVisible = !this.userMenuVisible;
+  }
+
+  toggleOverlayVisible() {
+    this.overlayVisible = !this.overlayVisible;
   }
 
   login() {

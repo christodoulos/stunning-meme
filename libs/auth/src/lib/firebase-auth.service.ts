@@ -25,7 +25,7 @@ export class FirebaseAuthService {
   async googleSignIn() {
     const provider = new firebase.auth.GoogleAuthProvider();
     await this.auth.signInWithPopup(provider);
-    this.alertService.add('logged In horray!', AlertType.Success);
+    this.alertService.add('logged In horray!', AlertType.Error);
   }
 
   async singnOut() {

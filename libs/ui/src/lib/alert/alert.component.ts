@@ -26,68 +26,36 @@ export class AlertComponent {
   @Input() message = '';
   @Output() dismiss: EventEmitter<boolean> = new EventEmitter();
 
+  get _color() {
+    switch (this.alertType) {
+      case AlertType.Success:
+        return 'green';
+      case AlertType.Error:
+        return 'red';
+      case AlertType.Warning:
+        return 'yellow';
+      case AlertType.Info:
+        return 'blue';
+      default:
+        return '';
+    }
+  }
+
+  get color() {
+    return {
+      bg: `bg-${this._color}-50`,
+      txt: `text-${this._color}-700`,
+      bold: `text-${this._color}-800`,
+      icon: `text-${this._color}-400`,
+      dismiss_txt: `text-${this._color}-500`,
+      dismiss_hover: `bg-${this._color}-100`,
+      dismiss_focus_ring_offset: `ring-offset-${this._color}-50`,
+      dismiss_focus: `ring-${this._color}-600`,
+    };
+  }
+
   onDismiss() {
     this.dismiss.emit();
-  }
-
-  bgColor(): string | undefined {
-    switch (this.alertType) {
-      case AlertType.Success:
-        return 'bg-green-50';
-      case AlertType.Error:
-        return 'bg-red-50';
-      case AlertType.Warning:
-        return 'bg-yellow-50';
-      case AlertType.Info:
-        return 'bg-blue-50';
-      default:
-        return undefined;
-    }
-  }
-
-  txtColor(): string | undefined {
-    switch (this.alertType) {
-      case AlertType.Success:
-        return 'text-green-700';
-      case AlertType.Error:
-        return 'text-red-700';
-      case AlertType.Warning:
-        return 'text-yellow-700';
-      case AlertType.Info:
-        return 'text-blue-700';
-      default:
-        return undefined;
-    }
-  }
-
-  txtColorStrong(): string | undefined {
-    switch (this.alertType) {
-      case AlertType.Success:
-        return 'text-green-800';
-      case AlertType.Error:
-        return 'text-red-800';
-      case AlertType.Warning:
-        return 'text-yellow-800';
-      case AlertType.Info:
-        return 'text-blue-800';
-      default:
-        return undefined;
-    }
-  }
-
-  iconColor(): string | undefined {
-    switch (this.alertType) {
-      case AlertType.Success:
-        return 'text-green-400';
-      case AlertType.Error:
-        return 'text-red-400';
-      case AlertType.Warning:
-        return 'text-yellow-400';
-      case AlertType.Info:
-        return 'text-blue-400';
-      default:
-        return undefined;
-    }
   }
 
   iconKey(): string | undefined {

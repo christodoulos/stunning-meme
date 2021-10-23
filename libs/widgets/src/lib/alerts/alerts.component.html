@@ -2,8 +2,10 @@
   <!-- {{ alert.type }} {{ alert.message }} -->
   <alert
     [alertType]="alert.type"
-    [header]="'Welcome back!'"
+    [header]="alert.header"
     [message]="alert.message"
+    [autodismiss]="alert.autodismiss ? true : false"
+    [duration]="alert.duration ? alert.duration : 0"
     (dismiss)="onDismiss(alert.id)"
   ></alert>
 </div>

@@ -4,6 +4,7 @@ import {
   Input,
   Output,
   EventEmitter,
+  OnInit,
 } from '@angular/core';
 
 export enum AlertType {
@@ -20,11 +21,35 @@ export enum AlertType {
   styleUrls: ['./alert.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AlertComponent {
-  @Input() alertType: AlertType | undefined;
-  @Input() header = '';
+export class AlertComponent implements OnInit {
+  @Input() alertType = AlertType.Info;
+  @Input() header: string | undefined;
   @Input() message = '';
+  @Input() autodismiss = false;
+  @Input() duration = 0;
   @Output() dismiss: EventEmitter<boolean> = new EventEmitter();
+
+  ngOnInit(): void {
+    if (this.header === undefined) {
+      switch (this.alertType) {
+        case AlertType.Success:
+          this.header = 'Success';
+          break;
+        case AlertType.Error:
+          this.header = 'Error';
+          break;
+        case AlertType.Warning:
+          this.header = 'Warning';
+          break;
+        case AlertType.Info:
+          this.header = 'Info';
+          break;
+      }
+    }
+    if (this.autodismiss) {
+      setTimeout(() => this.dismiss.emit(), this.duration * 1000);
+    }
+  }
 
   get _color() {
     switch (this.alertType) {
@@ -36,8 +61,6 @@ export class AlertComponent {
         return 'yellow';
       case AlertType.Info:
         return 'blue';
-      default:
-        return '';
     }
   }
 
@@ -68,8 +91,6 @@ export class AlertComponent {
         return 'solid-exclamation';
       case AlertType.Info:
         return 'solid-information-circle';
-      default:
-        return undefined;
     }
   }
 }

@@ -21,15 +21,18 @@ export { AlertType } from '@nocode/ui';
 // Alert Model
 
 export interface AlertOptions {
-  autoclose?: boolean;
+  autodismiss?: boolean;
+  duration?: number;
   keepAfterRouteChange?: boolean;
 }
 
 export interface Alert {
   id: string;
-  type: AlertType | undefined;
+  type: AlertType;
+  header?: string;
   message: string;
-  autoclose?: boolean;
+  autodismiss?: boolean;
+  duration?: number;
   keepAfterRouteChange?: boolean;
 }
 
@@ -107,6 +110,7 @@ export class AlertEffects {
     this.actions$.pipe(
       ofType(ALERT_SUCCESS),
       tap((payload) => {
+        console.log('lala');
         this.alertService.add(
           payload.message,
           AlertType.Success,

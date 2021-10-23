@@ -1,5 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { AlertService, AlertQuery } from './alerts.state';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Actions } from '@datorama/akita-ng-effects';
+import { AlertQuery, ALERT_DISMISS } from './alerts.state';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -8,13 +9,11 @@ import { AlertService, AlertQuery } from './alerts.state';
   styleUrls: ['./alerts.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AlertsComponent implements OnInit {
+export class AlertsComponent {
   alerts$ = this.query.selectAll();
-  constructor(private query: AlertQuery, private service: AlertService) {}
-
-  ngOnInit(): void {}
+  constructor(private query: AlertQuery, private actions: Actions) {}
 
   onDismiss(id: string) {
-    this.service.remove(id);
+    this.actions.dispatch(ALERT_DISMISS({ id }));
   }
 }

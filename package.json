@@ -27,6 +27,7 @@
     "@codemirror/state": "^0.19.2",
     "@codemirror/view": "^0.19.9",
     "@datorama/akita": "^6.0.0",
+    "@datorama/akita-ng-effects": "1.0.5",
     "@datorama/akita-ng-entity-service": "^6.0.0",
     "@datorama/akita-ng-router-store": "^6.0.0",
     "@ngneat/dialog": "1.6.0",

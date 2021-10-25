@@ -36,7 +36,7 @@ export interface Alert {
   keepAfterRouteChange?: boolean;
 }
 
-// Alert State
+// Alert Store
 
 export type AlertState = EntityState<Alert>;
 
@@ -79,26 +79,29 @@ export class AlertQuery extends QueryEntity<AlertState> {
 // Alert Actions
 
 export const ALERT_SUCCESS = createAction(
-  'NEW success',
+  'NEW SUCCESS ALERT',
   props<{ message: string; options: AlertOptions }>()
 );
 
 export const ALERT_ERROR = createAction(
-  'NEW error',
+  'NEW ERROR ALERT',
   props<{ message: string; options?: AlertOptions }>()
 );
 
 export const ALERT_INFO = createAction(
-  'NEW info',
+  'NEW INFO ALERT',
   props<{ message: string; options?: AlertOptions }>()
 );
 
 export const ALERT_WARN = createAction(
-  'NEW warn',
+  'NEW WARN ALERT',
   props<{ message: string; options?: AlertOptions }>()
 );
 
-export const ALERT_DISMISS = createAction('DISMISS', props<{ id: string }>());
+export const ALERT_DISMISS = createAction(
+  'DISMISS ALERT',
+  props<{ id: string }>()
+);
 
 // Alert Effects
 
@@ -110,7 +113,6 @@ export class AlertEffects {
     this.actions$.pipe(
       ofType(ALERT_SUCCESS),
       tap((payload) => {
-        console.log('lala');
         this.alertService.add(
           payload.message,
           AlertType.Success,

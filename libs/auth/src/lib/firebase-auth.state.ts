@@ -1,5 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Store, StoreConfig, Query } from '@datorama/akita';
+import {
+  Actions,
+  createAction,
+  createEffect,
+  ofType,
+  props,
+} from '@datorama/akita-ng-effects';
+import { map, tap } from 'rxjs/operators';
+import { FirebaseAuthService } from './firebase-auth.service';
+
+// User Mode;
 
 export interface FirebaseUser {
   [key: string]: string | boolean | null | undefined;
@@ -10,6 +21,8 @@ export interface FirebaseUser {
   uid: string;
 }
 
+// User Store
+
 @Injectable({ providedIn: 'root' })
 @StoreConfig({ name: 'Firebase User', resettable: true })
 export class FirebaseUserStore extends Store<FirebaseUser> {
@@ -17,6 +30,8 @@ export class FirebaseUserStore extends Store<FirebaseUser> {
     super({});
   }
 }
+
+// User Service
 
 @Injectable({ providedIn: 'root' })
 export class FirebaseUserService {
@@ -26,6 +41,8 @@ export class FirebaseUserService {
     this.firebaseUserStore.setLoading(false);
   }
 }
+
+// User Query
 
 @Injectable({ providedIn: 'root' })
 export class UserQuery extends Query<FirebaseUser> {
@@ -41,4 +58,50 @@ export class UserQuery extends Query<FirebaseUser> {
   constructor(protected store: FirebaseUserStore) {
     super(store);
   }
+}
+
+// User Actions
+
+export const GOOGLE_SIGN_IN = createAction('GOOGLE_SIGN_IN');
+export const UPDATE_SESSION = createAction(
+  'UPDATE_SESSION',
+  props<{ user: FirebaseUser }>()
+);
+export const SIGN_OUT = createAction('SIGN OUT');
+
+// User Effects
+
+@Injectable()
+export class UserEffects {
+  constructor(
+    private actions$: Actions,
+    private authService: FirebaseAuthService,
+    private userService: FirebaseUserService
+  ) {}
+
+  googleSignInEffect$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(GOOGLE_SIGN_IN),
+      tap(() => {
+        this.authService.googleSignIn();
+      })
+    )
+  );
+
+  updateSessionEffect$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UPDATE_SESSION),
+      map((data) => data.user),
+      tap((user) => {
+        this.userService.updateUser(user);
+      })
+    )
+  );
+
+  signOutEffect$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(SIGN_OUT),
+      tap(() => this.authService.singnOut())
+    )
+  );
 }

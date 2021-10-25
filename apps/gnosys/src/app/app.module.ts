@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { WidgetsModule } from '@nocode/widgets';
+import { AuthModule } from '@nocode/auth';
 
 import { SvgIconsModule } from '@ngneat/svg-icon';
 
@@ -28,6 +29,7 @@ import { AngularFireModule } from '@angular/fire/compat';
         xxl: '30px',
       },
     }),
+    AuthModule,
     WidgetsModule,
     DialogModule.forRoot({
       sizes: {

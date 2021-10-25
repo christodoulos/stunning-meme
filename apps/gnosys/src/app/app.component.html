@@ -730,7 +730,7 @@
           </button>
 
           <!-- Profile dropdown -->
-          <div class="ml-3 relative">
+          <div class="ml-3 relative" *ngIf="loggedIn$ | async">
             <div>
               <button
                 type="button"
@@ -754,7 +754,7 @@
                 <span class="sr-only">Open user menu</span>
                 <img
                   class="h-8 w-8 rounded-full"
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  src="{{ avatar$ | async }}"
                   alt=""
                 />
               </button>
@@ -815,6 +815,7 @@
                 role="menuitem"
                 tabindex="-1"
                 id="user-menu-item-2"
+                (click)="logout()"
                 >Sign out</a
               >
             </div>
@@ -835,7 +836,6 @@
           <!-- Replace with your content -->
 
           <a (click)="login()">Login</a>
-          <a (click)="logout()">Logout</a>
           <basic-code-editor></basic-code-editor>
 
           <!-- /End replace -->

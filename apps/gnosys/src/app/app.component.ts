@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { FirebaseAuthService, FirebaseUserService } from '@nocode/auth';
+
+import { GOOGLE_SIGN_IN, SIGN_OUT, UserQuery } from '@nocode/auth';
+
+import { Actions } from '@datorama/akita-ng-effects';
 
 @Component({
   selector: 'nocode-root',
@@ -8,24 +11,13 @@ import { FirebaseAuthService, FirebaseUserService } from '@nocode/auth';
 })
 export class AppComponent {
   title = 'gnosys';
-  loggedIn$ = this.auth.loggedIn$;
+  avatar$ = this.query.userPhotoURL$;
+  loggedIn$ = this.query.loggedIn$;
 
   userMenuVisible = false;
   overlayVisible = false;
 
-  constructor(
-    private auth: FirebaseAuthService,
-    private service: FirebaseUserService
-  ) {
-    this.loggedIn$.subscribe((user) => {
-      if (user) {
-        const data = auth.parseFirebaseUser(user);
-        this.service.updateUser(data);
-      } else {
-        console.log('logged out');
-      }
-    });
-  }
+  constructor(private query: UserQuery, private actions: Actions) {}
 
   toggleUserMenu() {
     this.userMenuVisible = !this.userMenuVisible;
@@ -36,10 +28,10 @@ export class AppComponent {
   }
 
   login() {
-    this.auth.googleSignIn();
+    this.actions.dispatch(GOOGLE_SIGN_IN());
   }
 
   logout() {
-    this.auth.singnOut();
+    this.actions.dispatch(SIGN_OUT());
   }
 }

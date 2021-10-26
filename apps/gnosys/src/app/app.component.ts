@@ -13,6 +13,7 @@ export class AppComponent {
   title = 'gnosys';
   avatar$ = this.query.userPhotoURL$;
   loggedIn$ = this.query.loggedIn$;
+  isLoading$ = this.query.isLoading$;
 
   userMenuVisible = false;
   overlayVisible = false;

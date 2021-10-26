@@ -5,6 +5,7 @@ import { AlertEffects } from './alerts/alerts.state';
 import { UiModule } from '@nocode/ui';
 import { BasicCodeEditorComponent } from './basic-code-editor/basic-code-editor.component';
 import { AlertsComponent } from './alerts/alerts.component';
+import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
 
 @NgModule({
   imports: [
@@ -12,7 +13,7 @@ import { AlertsComponent } from './alerts/alerts.component';
     UiModule,
     AkitaNgEffectsModule.forFeature([AlertEffects]),
   ],
-  declarations: [BasicCodeEditorComponent, AlertsComponent],
-  exports: [BasicCodeEditorComponent, AlertsComponent],
+  declarations: [BasicCodeEditorComponent, AlertsComponent, LoadingOverlayComponent],
+  exports: [BasicCodeEditorComponent, AlertsComponent, LoadingOverlayComponent],
 })
 export class WidgetsModule {}

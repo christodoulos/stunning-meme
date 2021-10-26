@@ -14,6 +14,7 @@ import { FirebaseAuthService } from './firebase-auth.service';
 
 export interface FirebaseUser {
   [key: string]: string | boolean | null | undefined;
+  isLoading?: boolean;
   displayName: string | null;
   email: string | null;
   emailVerified: boolean;
@@ -36,9 +37,14 @@ export class FirebaseUserStore extends Store<FirebaseUser> {
 @Injectable({ providedIn: 'root' })
 export class FirebaseUserService {
   constructor(private firebaseUserStore: FirebaseUserStore) {}
+
   updateUser(user: FirebaseUser) {
     this.firebaseUserStore.update({ ...user });
     this.firebaseUserStore.setLoading(false);
+  }
+
+  setLoading(isLoading: boolean) {
+    this.firebaseUserStore.setLoading(isLoading);
   }
 }
 
@@ -48,6 +54,7 @@ export class FirebaseUserService {
 export class UserQuery extends Query<FirebaseUser> {
   user$ = this.select();
   loggedIn$ = this.select((state) => state.uid !== '' && state.emailVerified);
+  isLoading$ = this.select((state) => state.loading);
   emailVerified$ = this.select((state) => state.emailVerified);
   uid$ = this.select((state) => state.uid);
   userEmail$ = this.select((state) => state.email);
@@ -83,6 +90,7 @@ export class UserEffects {
     this.actions$.pipe(
       ofType(GOOGLE_SIGN_IN),
       tap(() => {
+        this.userService.setLoading(true);
         this.authService.googleSignIn();
       })
     )

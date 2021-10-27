@@ -54,8 +54,13 @@ export class AlertStore extends EntityStore<AlertState> {
 export class AlertService {
   constructor(private alertStore: AlertStore) {}
 
-  add(message: string, type: AlertType, options?: AlertOptions) {
-    this.alertStore.add({ id: guid(), message, type, ...options });
+  add(
+    message: string,
+    type: AlertType,
+    header?: string,
+    options?: AlertOptions
+  ) {
+    this.alertStore.add({ id: guid(), message, type, header, ...options });
   }
 
   update(id: string, alert: AlertOptions) {
@@ -80,22 +85,22 @@ export class AlertQuery extends QueryEntity<AlertState> {
 
 export const ALERT_SUCCESS = createAction(
   'NEW SUCCESS ALERT',
-  props<{ message: string; options: AlertOptions }>()
+  props<{ message: string; header?: string; options?: AlertOptions }>()
 );
 
 export const ALERT_ERROR = createAction(
   'NEW ERROR ALERT',
-  props<{ message: string; options?: AlertOptions }>()
+  props<{ message: string; header?: string; options?: AlertOptions }>()
 );
 
 export const ALERT_INFO = createAction(
   'NEW INFO ALERT',
-  props<{ message: string; options?: AlertOptions }>()
+  props<{ message: string; header?: string; options?: AlertOptions }>()
 );
 
 export const ALERT_WARN = createAction(
   'NEW WARN ALERT',
-  props<{ message: string; options?: AlertOptions }>()
+  props<{ message: string; header?: string; options?: AlertOptions }>()
 );
 
 export const ALERT_DISMISS = createAction(
@@ -116,6 +121,7 @@ export class AlertEffects {
         this.alertService.add(
           payload.message,
           AlertType.Success,
+          payload.header,
           payload.options
         );
       })
@@ -129,6 +135,7 @@ export class AlertEffects {
         this.alertService.add(
           payload.message,
           AlertType.Error,
+          payload.header,
           payload.options
         );
       })
@@ -139,7 +146,12 @@ export class AlertEffects {
     this.actions$.pipe(
       ofType(ALERT_INFO),
       tap((payload) => {
-        this.alertService.add(payload.message, AlertType.Info, payload.options);
+        this.alertService.add(
+          payload.message,
+          AlertType.Info,
+          payload.header,
+          payload.options
+        );
       })
     )
   );
@@ -151,6 +163,7 @@ export class AlertEffects {
         this.alertService.add(
           payload.message,
           AlertType.Warning,
+          payload.header,
           payload.options
         );
       })

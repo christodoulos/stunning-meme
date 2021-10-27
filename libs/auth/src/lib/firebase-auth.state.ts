@@ -9,6 +9,7 @@ import {
 } from '@datorama/akita-ng-effects';
 import { map, tap } from 'rxjs/operators';
 import { FirebaseAuthService } from './firebase-auth.service';
+import { ALERT_SUCCESS } from '@nocode/widgets';
 
 // User Mode;
 
@@ -96,14 +97,21 @@ export class UserEffects {
     )
   );
 
-  updateSessionEffect$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(UPDATE_SESSION),
-      map((data) => data.user),
-      tap((user) => {
-        this.userService.updateUser(user);
-      })
-    )
+  updateSessionEffect$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(UPDATE_SESSION),
+        map((data) => data.user),
+        tap((user) => this.userService.updateUser(user)),
+        map((user) =>
+          ALERT_SUCCESS({
+            header: `Welcome ${user.displayName}`,
+            message: 'Nice to see you again!',
+            options: { autodismiss: true, duration: 10 },
+          })
+        )
+      ),
+    { dispatch: true }
   );
 
   signOutEffect$ = createEffect(() =>

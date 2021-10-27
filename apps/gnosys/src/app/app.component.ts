@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 
-import { GOOGLE_SIGN_IN, SIGN_OUT, UserQuery } from '@nocode/auth';
+import {
+  INIT_SESSION,
+  GOOGLE_SIGN_IN,
+  SIGN_OUT,
+  UserQuery,
+} from '@nocode/auth';
 
 import { Actions } from '@datorama/akita-ng-effects';
 
@@ -34,5 +39,6 @@ export class AppComponent {
 
   logout() {
     this.actions.dispatch(SIGN_OUT());
+    this.actions.dispatch(INIT_SESSION());
   }
 }

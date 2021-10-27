@@ -14,13 +14,23 @@ import { ALERT_SUCCESS } from '@nocode/widgets';
 // User Mode;
 
 export interface FirebaseUser {
-  [key: string]: string | boolean | null | undefined;
-  isLoading?: boolean;
-  displayName: string | null;
-  email: string | null;
+  // [key: string]: string | boolean | null | undefined;
+  loading?: boolean;
+  displayName: string;
+  email: string;
   emailVerified: boolean;
-  photoURL: string | null;
+  photoURL: string;
   uid: string;
+}
+
+export function emptyUser(): FirebaseUser {
+  return {
+    uid: '',
+    displayName: '',
+    email: '',
+    photoURL: '',
+    emailVerified: false,
+  };
 }
 
 // User Store
@@ -29,7 +39,7 @@ export interface FirebaseUser {
 @StoreConfig({ name: 'Firebase User', resettable: true })
 export class FirebaseUserStore extends Store<FirebaseUser> {
   constructor() {
-    super({});
+    super(emptyUser());
   }
 }
 
@@ -70,9 +80,10 @@ export class UserQuery extends Query<FirebaseUser> {
 
 // User Actions
 
-export const GOOGLE_SIGN_IN = createAction('GOOGLE_SIGN_IN');
+export const INIT_SESSION = createAction('INIT SESSION');
+export const GOOGLE_SIGN_IN = createAction('GOOGLE SIGN IN');
 export const UPDATE_SESSION = createAction(
-  'UPDATE_SESSION',
+  'UPDATE SESSION',
   props<{ user: FirebaseUser }>()
 );
 export const SIGN_OUT = createAction('SIGN OUT');
@@ -86,6 +97,13 @@ export class UserEffects {
     private authService: FirebaseAuthService,
     private userService: FirebaseUserService
   ) {}
+
+  initSessionEffect$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(INIT_SESSION),
+      tap(() => this.userService.updateUser(emptyUser()))
+    )
+  );
 
   googleSignInEffect$ = createEffect(() =>
     this.actions$.pipe(
@@ -107,17 +125,26 @@ export class UserEffects {
           ALERT_SUCCESS({
             header: `Welcome ${user.displayName}`,
             message: 'Nice to see you again!',
-            options: { autodismiss: true, duration: 10 },
+            options: { autodismiss: true, duration: 5 },
           })
         )
       ),
     { dispatch: true }
   );
 
-  signOutEffect$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(SIGN_OUT),
-      tap(() => this.authService.singnOut())
-    )
+  signOutEffect$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(SIGN_OUT),
+        tap(() => this.authService.singnOut()),
+        map(() =>
+          ALERT_SUCCESS({
+            header: `Goodbye`,
+            message: 'Looking foward to seeing you again!',
+            options: { autodismiss: true, duration: 5 },
+          })
+        )
+      ),
+    { dispatch: true }
   );
 }

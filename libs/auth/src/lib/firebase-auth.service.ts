@@ -16,13 +16,17 @@ export class FirebaseAuthService {
         const user = this.parseFirebaseUser(data);
         this.actions.dispatch(UPDATE_SESSION({ user }));
       } else {
-        resetStores();
+        // resetStores();
       }
     });
   }
 
   parseFirebaseUser(user: firebase.User): FirebaseUser {
-    const { uid, email, displayName, photoURL, emailVerified } = user;
+    const uid = user.uid;
+    const email = user.email ? user.email : '';
+    const displayName = user.displayName ? user.displayName : '';
+    const photoURL = user.photoURL ? user.photoURL : '';
+    const emailVerified = user.emailVerified;
     return { uid, email, displayName, photoURL, emailVerified };
   }
 

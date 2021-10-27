@@ -41,7 +41,7 @@ export interface Alert {
 export type AlertState = EntityState<Alert>;
 
 @Injectable({ providedIn: 'root' })
-@StoreConfig({ name: 'alert', resettable: true })
+@StoreConfig({ name: 'alert' })
 export class AlertStore extends EntityStore<AlertState> {
   constructor() {
     super();

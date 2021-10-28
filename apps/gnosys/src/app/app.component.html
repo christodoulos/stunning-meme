@@ -746,6 +746,12 @@
             >
           </div>
           <!-- Profile dropdown -->
+          <avatar-dropdown
+            *ngIf="loggedIn$ | async"
+            [imageURL$]="avatar$"
+            [items]="items"
+            (selected)="onSelected($event)"
+          ></avatar-dropdown>
           <div class="ml-3 relative" *ngIf="loggedIn$ | async">
             <div>
               <button

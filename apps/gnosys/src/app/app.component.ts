@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 import {
   INIT_SESSION,
@@ -6,6 +6,8 @@ import {
   SIGN_OUT,
   UserQuery,
 } from '@nocode/auth';
+
+import { ALERT_ERROR, ALERT_INFO } from '@nocode/widgets';
 
 import { Actions } from '@datorama/akita-ng-effects';
 
@@ -16,6 +18,7 @@ import { Actions } from '@datorama/akita-ng-effects';
 })
 export class AppComponent {
   title = 'gnosys';
+  items = ['Profile', 'Settings', 'Sign Out'];
   avatar$ = this.query.userPhotoURL$;
   loggedIn$ = this.query.loggedIn$;
   isLoading$ = this.query.isLoading$;
@@ -23,7 +26,11 @@ export class AppComponent {
   userMenuVisible = false;
   overlayVisible = false;
 
-  constructor(private query: UserQuery, private actions: Actions) {}
+  constructor(
+    private query: UserQuery,
+
+    private actions: Actions
+  ) {}
 
   toggleUserMenu() {
     this.userMenuVisible = !this.userMenuVisible;
@@ -39,6 +46,9 @@ export class AppComponent {
 
   logout() {
     this.actions.dispatch(SIGN_OUT());
-    this.actions.dispatch(INIT_SESSION());
+  }
+
+  onSelected(item: string) {
+    console.log(item);
   }
 }

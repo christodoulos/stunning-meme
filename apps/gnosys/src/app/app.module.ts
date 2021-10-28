@@ -14,6 +14,7 @@ import { AkitaNgRouterStoreModule } from '@datorama/akita-ng-router-store';
 import { RouterModule } from '@angular/router';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
+import { UiModule } from '@nocode/ui';
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +32,7 @@ import { AngularFireModule } from '@angular/fire/compat';
     }),
     AuthModule,
     WidgetsModule,
+    UiModule,
     DialogModule.forRoot({
       sizes: {
         sm: {

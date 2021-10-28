@@ -1,0 +1,45 @@
+<div
+  class="
+        {{
+    visible
+      ? 'transition ease-out duration-100  transform opacity-100 scale-100'
+      : 'transition ease-in duration-75 transform opacity-0 scale-95 hidden'
+  }}
+        origin-top-right
+        absolute
+        right-0
+        mt-2
+        whitespace-nowrap
+        rounded-md
+        shadow-lg
+        bg-white
+        ring-1 ring-black ring-opacity-5
+        focus:outline-none
+      "
+  role="menu"
+  aria-orientation="vertical"
+  aria-labelledby="menu-button"
+  tabindex="-1"
+>
+  <div class="py-1" role="none">
+    <a
+      (click)="onClick(item)"
+      *ngFor="let item of items; index as i"
+      class="
+        flex
+        cursor-pointer
+        items-center
+        text-gray-700
+        px-4
+        py-2
+        text-sm
+        hover:bg-gray-100 hover:text-gray-900
+      "
+      role="menuitem"
+      tabindex="-1"
+      id="menu-item-{{ i }}"
+    >
+      {{ item }}</a
+    >
+  </div>
+</div>

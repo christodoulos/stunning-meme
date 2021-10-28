@@ -11,7 +11,7 @@ import { map, tap } from 'rxjs/operators';
 import { FirebaseAuthService } from './firebase-auth.service';
 import { ALERT_SUCCESS } from '@nocode/widgets';
 
-// User Mode;
+// User Model;
 
 export interface FirebaseUser {
   // [key: string]: string | boolean | null | undefined;
@@ -137,6 +137,7 @@ export class UserEffects {
       this.actions$.pipe(
         ofType(SIGN_OUT),
         tap(() => this.authService.singnOut()),
+        tap(() => this.userService.updateUser(emptyUser())),
         map(() =>
           ALERT_SUCCESS({
             header: `Goodbye`,

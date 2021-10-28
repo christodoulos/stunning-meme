@@ -27,7 +27,7 @@ import { UiModule } from '@nocode/ui';
         md: '16px',
         lg: '20px',
         xl: '25px',
-        xxl: '30px',
+        xxl: '100px',
       },
     }),
     AuthModule,
@@ -45,7 +45,13 @@ import { UiModule } from '@nocode/ui';
     }),
     environment.production ? [] : AkitaNgDevtools.forRoot(),
     AkitaNgRouterStoreModule,
-    RouterModule.forRoot([]),
+    RouterModule.forRoot([
+      {
+        path: '',
+        loadChildren: () =>
+          import('./landing/landing.module').then((m) => m.LandingModule),
+      },
+    ]),
     AngularFireModule.initializeApp({
       apiKey: 'AIzaSyBuptTUnVYZPtrcJM8JK62KW5FAnYC21C0',
       authDomain: 'gnosys-4572d.firebaseapp.com',

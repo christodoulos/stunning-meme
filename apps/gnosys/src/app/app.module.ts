@@ -15,9 +15,10 @@ import { RouterModule } from '@angular/router';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { UiModule } from '@nocode/ui';
+import { LogoComponent } from './logo/logo.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LogoComponent],
   imports: [
     BrowserModule,
     SvgIconsModule.forRoot({
@@ -27,7 +28,7 @@ import { UiModule } from '@nocode/ui';
         md: '16px',
         lg: '20px',
         xl: '25px',
-        xxl: '100px',
+        xxl: '30px',
       },
     }),
     AuthModule,

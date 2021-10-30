@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
-import { GOOGLE_SIGN_IN, SIGN_OUT, UserQuery } from '@nocode/auth';
+import { GOOGLE_SIGN_IN, SignOutAction, FirebaseUserQuery } from '@nocode/auth';
 
 import { Actions } from '@datorama/akita-ng-effects';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'nocode-root',
@@ -19,7 +20,19 @@ export class AppComponent {
   userMenuVisible = false;
   overlayVisible = false;
 
-  constructor(private query: UserQuery, private actions: Actions) {}
+  constructor(
+    private query: FirebaseUserQuery,
+    private actions: Actions,
+    private router: Router
+  ) {
+    this.loggedIn$.subscribe((isLoggedIn) => {
+      if (isLoggedIn) {
+        this.router.navigate(['user']);
+      } else {
+        this.router.navigate(['']);
+      }
+    });
+  }
 
   toggleUserMenu() {
     this.userMenuVisible = !this.userMenuVisible;
@@ -34,7 +47,7 @@ export class AppComponent {
   }
 
   logout() {
-    this.actions.dispatch(SIGN_OUT());
+    this.actions.dispatch(SignOutAction);
   }
 
   onSelected(item: string) {

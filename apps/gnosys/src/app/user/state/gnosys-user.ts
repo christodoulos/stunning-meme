@@ -8,7 +8,7 @@ import {
   ofType,
   props,
 } from '@datorama/akita-ng-effects';
-import { FirebaseUser, emptyUser } from '@nocode/auth';
+import { FirebaseUser, FirebaseUserQuery } from '@nocode/auth';
 import { FirestoreService } from './firestore.service';
 import { map, tap } from 'rxjs/operators';
 
@@ -27,11 +27,11 @@ export interface GnosysUser extends FirebaseUser {
 
 // Gnosys user Store
 
-Injectable({ providedIn: 'root' });
+@Injectable({ providedIn: 'root' })
 @StoreConfig({ name: 'Gnosys User', resettable: true })
 export class GnosysUserStore extends Store<GnosysUser> {
-  constructor() {
-    super(emptyUser());
+  constructor(private firebaseUserQuery: FirebaseUserQuery) {
+    super({ ...firebaseUserQuery.getValue() });
   }
 }
 
@@ -99,6 +99,7 @@ export class GnosysUserEffects {
     this.actions$.pipe(
       ofType(UserSignUpAction),
       tap((payload) => {
+        console.log('Signup Action Effect');
         this.firestoreService.updateUsersDoc(payload.data);
         this.router.navigate(['user']);
       })

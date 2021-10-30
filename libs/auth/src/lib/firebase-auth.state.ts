@@ -14,7 +14,7 @@ import { ALERT_SUCCESS } from '@nocode/widgets';
 // User Model;
 
 export interface FirebaseUser {
-  // [key: string]: string | boolean | null | undefined;
+  // [key: string]: string | boolean | undefined;
   loading?: boolean;
   displayName: string;
   email: string;
@@ -62,7 +62,7 @@ export class FirebaseUserService {
 // User Query
 
 @Injectable({ providedIn: 'root' })
-export class UserQuery extends Query<FirebaseUser> {
+export class FirebaseUserQuery extends Query<FirebaseUser> {
   loggedIn$ = this.select((state) => state.uid !== '' && state.emailVerified);
   isLoading$ = this.select((state) => state.loading);
   uid$ = this.select((state) => state.uid);
@@ -81,27 +81,27 @@ export const UPDATE_SESSION = createAction(
   'UPDATE SESSION',
   props<{ user: FirebaseUser }>()
 );
-export const SIGN_OUT = createAction('SIGN OUT');
+export const SignOutAction = createAction('SIGN OUT');
 
 // User Effects
 
 @Injectable()
 export class UserEffects {
   constructor(
-    private actions$: Actions,
+    private actions: Actions,
     private authService: FirebaseAuthService,
     private userService: FirebaseUserService
   ) {}
 
   initSessionEffect$ = createEffect(() =>
-    this.actions$.pipe(
+    this.actions.pipe(
       ofType(INIT_SESSION),
       tap(() => this.userService.updateUser(emptyUser()))
     )
   );
 
   googleSignInEffect$ = createEffect(() =>
-    this.actions$.pipe(
+    this.actions.pipe(
       ofType(GOOGLE_SIGN_IN),
       tap(() => {
         this.userService.setLoading(true);
@@ -111,7 +111,7 @@ export class UserEffects {
   );
 
   updateSessionEffect$ = createEffect(() =>
-    this.actions$.pipe(
+    this.actions.pipe(
       ofType(UPDATE_SESSION),
       map((data) => data.user),
       tap((user) => this.userService.updateUser(user))
@@ -119,8 +119,8 @@ export class UserEffects {
   );
 
   signOutEffect$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(SIGN_OUT),
+    this.actions.pipe(
+      ofType(SignOutAction),
       tap(() => this.authService.singnOut()),
       tap(() => this.userService.updateUser(emptyUser()))
     )

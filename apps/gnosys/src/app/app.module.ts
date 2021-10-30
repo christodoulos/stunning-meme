@@ -52,6 +52,11 @@ import { LogoComponent } from './logo/logo.component';
         loadChildren: () =>
           import('./landing/landing.module').then((m) => m.LandingModule),
       },
+      {
+        path: 'user',
+        loadChildren: () =>
+          import('./user/user.module').then((m) => m.UserModule),
+      },
     ]),
     AngularFireModule.initializeApp({
       apiKey: 'AIzaSyBuptTUnVYZPtrcJM8JK62KW5FAnYC21C0',

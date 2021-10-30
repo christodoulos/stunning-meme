@@ -1,13 +1,6 @@
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 
-import {
-  INIT_SESSION,
-  GOOGLE_SIGN_IN,
-  SIGN_OUT,
-  UserQuery,
-} from '@nocode/auth';
-
-import { ALERT_ERROR, ALERT_INFO } from '@nocode/widgets';
+import { GOOGLE_SIGN_IN, SIGN_OUT, UserQuery } from '@nocode/auth';
 
 import { Actions } from '@datorama/akita-ng-effects';
 
@@ -26,11 +19,7 @@ export class AppComponent {
   userMenuVisible = false;
   overlayVisible = false;
 
-  constructor(
-    private query: UserQuery,
-
-    private actions: Actions
-  ) {}
+  constructor(private query: UserQuery, private actions: Actions) {}
 
   toggleUserMenu() {
     this.userMenuVisible = !this.userMenuVisible;

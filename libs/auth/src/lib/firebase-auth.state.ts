@@ -47,15 +47,15 @@ export class FirebaseUserStore extends Store<FirebaseUser> {
 
 @Injectable({ providedIn: 'root' })
 export class FirebaseUserService {
-  constructor(private firebaseUserStore: FirebaseUserStore) {}
+  constructor(private store: FirebaseUserStore) {}
 
   updateUser(user: FirebaseUser) {
-    this.firebaseUserStore.update({ ...user });
-    this.firebaseUserStore.setLoading(false);
+    this.store.update({ ...user });
+    this.store.setLoading(false);
   }
 
   setLoading(isLoading: boolean) {
-    this.firebaseUserStore.setLoading(isLoading);
+    this.store.setLoading(isLoading);
   }
 }
 
@@ -63,15 +63,10 @@ export class FirebaseUserService {
 
 @Injectable({ providedIn: 'root' })
 export class UserQuery extends Query<FirebaseUser> {
-  user$ = this.select();
   loggedIn$ = this.select((state) => state.uid !== '' && state.emailVerified);
   isLoading$ = this.select((state) => state.loading);
-  emailVerified$ = this.select((state) => state.emailVerified);
   uid$ = this.select((state) => state.uid);
-  userEmail$ = this.select((state) => state.email);
   userDisplayName$ = this.select((state) => state.displayName);
-  firstName$ = this.select((state) => state.displayName?.split(' ')[0]);
-  lastName$ = this.select((state) => state.displayName?.split(' ')[1]);
   userPhotoURL$ = this.select((state) => state.photoURL);
   constructor(protected store: FirebaseUserStore) {
     super(store);
@@ -115,37 +110,19 @@ export class UserEffects {
     )
   );
 
-  updateSessionEffect$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(UPDATE_SESSION),
-        map((data) => data.user),
-        tap((user) => this.userService.updateUser(user)),
-        map((user) =>
-          ALERT_SUCCESS({
-            header: `Welcome ${user.displayName}`,
-            message: 'Nice to see you again!',
-            options: { autodismiss: true, duration: 5 },
-          })
-        )
-      ),
-    { dispatch: true }
+  updateSessionEffect$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UPDATE_SESSION),
+      map((data) => data.user),
+      tap((user) => this.userService.updateUser(user))
+    )
   );
 
-  signOutEffect$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(SIGN_OUT),
-        tap(() => this.authService.singnOut()),
-        tap(() => this.userService.updateUser(emptyUser())),
-        map(() =>
-          ALERT_SUCCESS({
-            header: `Goodbye`,
-            message: 'Looking foward to seeing you again!',
-            options: { autodismiss: true, duration: 5 },
-          })
-        )
-      ),
-    { dispatch: true }
+  signOutEffect$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(SIGN_OUT),
+      tap(() => this.authService.singnOut()),
+      tap(() => this.userService.updateUser(emptyUser()))
+    )
   );
 }

@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Actions } from '@datorama/akita-ng-effects';
-import { AlertQuery, ALERT_DISMISS } from './alerts.state';
+import { AlertQuery, AlertDismissAction } from './alerts.state';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -14,6 +14,6 @@ export class AlertsComponent {
   constructor(private query: AlertQuery, private actions: Actions) {}
 
   onDismiss(id: string) {
-    this.actions.dispatch(ALERT_DISMISS({ id }));
+    this.actions.dispatch(AlertDismissAction({ id }));
   }
 }

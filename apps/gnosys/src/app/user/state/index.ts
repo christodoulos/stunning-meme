@@ -1,2 +1,2 @@
-export * from './firestore.service';
+export * from './firestore.query';
 export * from './gnosys-user';

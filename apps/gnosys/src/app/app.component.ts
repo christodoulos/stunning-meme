@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 
-import { GOOGLE_SIGN_IN, SignOutAction, FirebaseUserQuery } from '@nocode/auth';
+import {
+  GoogleSignInAction,
+  SignOutAction,
+  FirebaseUserQuery,
+} from '@nocode/auth';
 
 import { Actions } from '@datorama/akita-ng-effects';
 import { Router } from '@angular/router';
@@ -43,7 +47,7 @@ export class AppComponent {
   }
 
   login() {
-    this.actions.dispatch(GOOGLE_SIGN_IN());
+    this.actions.dispatch(GoogleSignInAction());
   }
 
   logout() {

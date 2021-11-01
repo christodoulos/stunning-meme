@@ -1,26 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions } from '@datorama/akita-ng-effects';
-import { GnosysUserQuery, UserUpdateAction } from '../state';
+import { GnosysUserQuery, FirestoreQuery, UserUpdateAction } from '../state';
 
 @Component({
   templateUrl: './user-landing.component.html',
   styleUrls: ['./user-landing.component.css'],
 })
-export class UserLandingComponent implements OnInit {
+export class UserLandingComponent implements OnDestroy {
   constructor(
-    private actions: Actions,
     private query: GnosysUserQuery,
-    private router: Router
-  ) {
-    this.query.role$.subscribe((value) => {
-      if (!value) {
-        this.router.navigate(['user', 'signup']);
-      } else {
-        this.router.navigate(['user']);
-      }
-    });
-  }
+    private router: Router,
+    private fquery: FirestoreQuery,
+    private actions: Actions
+  ) {}
 
-  ngOnInit(): void {}
+  uid = this.query.getValue().uid;
+  subscription = this.fquery.isNewUser$(this.uid).subscribe((isNew) => {
+    if (isNew) {
+      this.router.navigate(['user', 'signup']);
+    } else {
+      this.router.navigate(['user']);
+      this.actions.dispatch(UserUpdateAction({ uid: this.uid }));
+    }
+  });
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 }

@@ -83,27 +83,27 @@ export class AlertQuery extends QueryEntity<AlertState> {
 
 // Alert Actions
 
-export const ALERT_SUCCESS = createAction(
+export const AlertSuccessAction = createAction(
   'NEW SUCCESS ALERT',
   props<{ message: string; header?: string; options?: AlertOptions }>()
 );
 
-export const ALERT_ERROR = createAction(
+export const AlertErrorAction = createAction(
   'NEW ERROR ALERT',
   props<{ message: string; header?: string; options?: AlertOptions }>()
 );
 
-export const ALERT_INFO = createAction(
+export const AlertInfoAction = createAction(
   'NEW INFO ALERT',
   props<{ message: string; header?: string; options?: AlertOptions }>()
 );
 
-export const ALERT_WARN = createAction(
+export const AlertWarnAction = createAction(
   'NEW WARN ALERT',
   props<{ message: string; header?: string; options?: AlertOptions }>()
 );
 
-export const ALERT_DISMISS = createAction(
+export const AlertDismissAction = createAction(
   'DISMISS ALERT',
   props<{ id: string }>()
 );
@@ -116,7 +116,7 @@ export class AlertEffects {
 
   alertSuccessEffect$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ALERT_SUCCESS),
+      ofType(AlertSuccessAction),
       tap((payload) => {
         this.alertService.add(
           payload.message,
@@ -130,7 +130,7 @@ export class AlertEffects {
 
   alertErrorEffect$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ALERT_ERROR),
+      ofType(AlertErrorAction),
       tap((payload) => {
         this.alertService.add(
           payload.message,
@@ -144,7 +144,7 @@ export class AlertEffects {
 
   alertInfoEffect$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ALERT_INFO),
+      ofType(AlertInfoAction),
       tap((payload) => {
         this.alertService.add(
           payload.message,
@@ -158,7 +158,7 @@ export class AlertEffects {
 
   alertWarnEffect$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ALERT_WARN),
+      ofType(AlertWarnAction),
       tap((payload) => {
         this.alertService.add(
           payload.message,
@@ -172,7 +172,7 @@ export class AlertEffects {
 
   alertDismissEffect$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(ALERT_DISMISS),
+      ofType(AlertDismissAction),
       tap((payload) => {
         this.alertService.remove(payload.id);
       })

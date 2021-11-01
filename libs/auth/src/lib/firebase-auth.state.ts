@@ -9,7 +9,6 @@ import {
 } from '@datorama/akita-ng-effects';
 import { map, tap } from 'rxjs/operators';
 import { FirebaseAuthService } from './firebase-auth.service';
-import { ALERT_SUCCESS } from '@nocode/widgets';
 
 // User Model;
 
@@ -75,9 +74,9 @@ export class FirebaseUserQuery extends Query<FirebaseUser> {
 
 // User Actions
 
-export const INIT_SESSION = createAction('INIT SESSION');
-export const GOOGLE_SIGN_IN = createAction('GOOGLE SIGN IN');
-export const UPDATE_SESSION = createAction(
+export const InitSessionAction = createAction('INIT SESSION');
+export const GoogleSignInAction = createAction('GOOGLE SIGN IN');
+export const UpdateSessionAction = createAction(
   'UPDATE SESSION',
   props<{ user: FirebaseUser }>()
 );
@@ -95,14 +94,14 @@ export class UserEffects {
 
   initSessionEffect$ = createEffect(() =>
     this.actions.pipe(
-      ofType(INIT_SESSION),
+      ofType(InitSessionAction),
       tap(() => this.userService.updateUser(emptyUser()))
     )
   );
 
   googleSignInEffect$ = createEffect(() =>
     this.actions.pipe(
-      ofType(GOOGLE_SIGN_IN),
+      ofType(GoogleSignInAction),
       tap(() => {
         this.userService.setLoading(true);
         this.authService.googleSignIn();
@@ -112,7 +111,7 @@ export class UserEffects {
 
   updateSessionEffect$ = createEffect(() =>
     this.actions.pipe(
-      ofType(UPDATE_SESSION),
+      ofType(UpdateSessionAction),
       map((data) => data.user),
       tap((user) => this.userService.updateUser(user))
     )

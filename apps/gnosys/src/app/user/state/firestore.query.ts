@@ -12,11 +12,10 @@ import * as _ from 'lodash';
 @Injectable({
   providedIn: 'root',
 })
-export class FirestoreService {
+export class FirestoreQuery {
   constructor(private angularFirestore: AngularFirestore) {}
 
   updateUsersDoc(data: GnosysUser) {
-    console.log('Firestore Service', data);
     const userRef: AngularFirestoreDocument = this.angularFirestore.doc(
       `users/${data.uid}`
     );

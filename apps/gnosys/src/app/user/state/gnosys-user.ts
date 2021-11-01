@@ -9,7 +9,7 @@ import {
   props,
 } from '@datorama/akita-ng-effects';
 import { FirebaseUser, FirebaseUserQuery } from '@nocode/auth';
-import { FirestoreService } from './firestore.service';
+import { FirestoreQuery } from './firestore.query';
 import { map, tap } from 'rxjs/operators';
 
 // Gnosys user model
@@ -79,14 +79,14 @@ export class GnosysUserEffects {
   constructor(
     private actions$: Actions,
     private router: Router,
-    private firestoreService: FirestoreService,
+    private query: FirestoreQuery,
     private gnosysUserService: GnosysUserService
   ) {}
 
   updateGnosysUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserUpdateAction),
-      map((payload) => this.firestoreService.userDoc(payload.uid)),
+      map((payload) => this.query.userDoc(payload.uid)),
       tap((doc) =>
         doc.subscribe((user) =>
           this.gnosysUserService.updateUser(user as GnosysUser)
@@ -100,7 +100,7 @@ export class GnosysUserEffects {
       ofType(UserSignUpAction),
       tap((payload) => {
         console.log('Signup Action Effect');
-        this.firestoreService.updateUsersDoc(payload.data);
+        this.query.updateUsersDoc(payload.data);
         this.router.navigate(['user']);
       })
     )

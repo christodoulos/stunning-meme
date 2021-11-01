@@ -1,33 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 
-import { FirebaseUser, UPDATE_SESSION } from './firebase-auth.state';
-// import { FirestoreService } from './firestore.service';
+import { FirebaseUser, UpdateSessionAction } from './firebase-auth.state';
 import { Actions } from '@datorama/akita-ng-effects';
+import { resetStores } from '@datorama/akita';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FirebaseAuthService {
-  constructor(
-    private auth: AngularFireAuth,
-    private actions: Actions,
-    // private firestoreService: FirestoreService,
-    private router: Router
-  ) {
+  constructor(private auth: AngularFireAuth, private actions: Actions) {
     this.auth.authState.subscribe((data) => {
       if (data) {
         const user = this.parseFirebaseUser(data);
-        this.actions.dispatch(UPDATE_SESSION({ user }));
-        // this.firestoreService
-        //   .isNewUser$(data.uid)
-        //   .subscribe((isNew) =>
-        //     isNew ? this.router.navigate(['user', 'signup']) : {}
-        //   );
+        this.actions.dispatch(UpdateSessionAction({ user }));
       } else {
         this.singnOut();
+        resetStores();
       }
     });
   }

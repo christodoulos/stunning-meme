@@ -92,7 +92,7 @@
   "svgGenerator": {
     "outputPath": "./libs/ui/src/svg",
     "prefix": "",
-    "srcPath": "./libs/ui/src/svg/assets",
+    "srcPath": "./libs/ui/src/lib/svg/assets",
     "svgoConfig": {
       "plugins": [
         "removeDimensions",

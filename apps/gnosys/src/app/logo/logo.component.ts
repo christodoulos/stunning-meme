@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -6,8 +6,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './logo.component.html',
   styleUrls: ['./logo.component.css'],
 })
-export class LogoComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+export class LogoComponent {
+  // constructor() {}
 }

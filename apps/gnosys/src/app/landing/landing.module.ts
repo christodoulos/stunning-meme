@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Route } from '@angular/router';
 import { SvgIconsModule } from '@ngneat/svg-icon';
 
-import { owlIcon } from 'libs/ui/src/svg/all/owl';
+import { allIcons } from '@nocode/ui';
 
 import { LandingComponent } from './landing/landing.component';
 
@@ -19,7 +19,7 @@ export const landingRoutes: Route[] = [
   imports: [
     CommonModule,
     RouterModule.forChild(landingRoutes),
-    SvgIconsModule.forChild([owlIcon]),
+    SvgIconsModule.forChild([...allIcons]),
   ],
 })
 export class LandingModule {}

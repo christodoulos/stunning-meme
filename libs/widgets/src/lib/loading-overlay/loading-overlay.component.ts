@@ -1,16 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'loading-overlay',
   templateUrl: './loading-overlay.component.html',
   styleUrls: ['./loading-overlay.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoadingOverlayComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class LoadingOverlayComponent {
+  // constructor() {}
 }

@@ -4,7 +4,6 @@ import firebase from 'firebase/compat/app';
 
 import { FirebaseUser, UpdateSessionAction } from './firebase-auth.state';
 import { Actions } from '@datorama/akita-ng-effects';
-import { resetStores } from '@datorama/akita';
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +14,6 @@ export class FirebaseAuthService {
       if (data) {
         const user = this.parseFirebaseUser(data);
         this.actions.dispatch(UpdateSessionAction({ user }));
-      } else {
-        this.singnOut();
-        resetStores();
       }
     });
   }

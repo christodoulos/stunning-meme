@@ -13,7 +13,6 @@ import { FirebaseAuthService } from './firebase-auth.service';
 // User Model;
 
 export interface FirebaseUser {
-  // [key: string]: string | boolean | undefined;
   loading?: boolean;
   displayName: string;
   email: string;
@@ -35,7 +34,7 @@ export function emptyUser(): FirebaseUser {
 // User Store
 
 @Injectable({ providedIn: 'root' })
-@StoreConfig({ name: 'Firebase User', resettable: true })
+@StoreConfig({ name: 'user' })
 export class FirebaseUserStore extends Store<FirebaseUser> {
   constructor() {
     super(emptyUser());

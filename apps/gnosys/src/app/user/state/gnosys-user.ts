@@ -8,9 +8,9 @@ import {
   ofType,
   props,
 } from '@datorama/akita-ng-effects';
-import { FirebaseUser, FirebaseUserQuery } from '@nocode/auth';
+import { FirebaseUser, FirebaseUserQuery, emptyUser } from '@nocode/auth';
 import { FirestoreQuery } from './firestore.query';
-import { map, tap } from 'rxjs/operators';
+import { map, take, tap } from 'rxjs/operators';
 
 // Gnosys user model
 
@@ -27,11 +27,22 @@ export interface GnosysUser extends FirebaseUser {
 
 // Gnosys user Store
 
+export function initGnosysUser(): GnosysUser {
+  return {
+    uid: '',
+    displayName: '',
+    email: '',
+    photoURL: '',
+    emailVerified: false,
+    role: undefined,
+  };
+}
+
 @Injectable({ providedIn: 'root' })
-@StoreConfig({ name: 'Gnosys User', resettable: true })
+@StoreConfig({ name: 'user' })
 export class GnosysUserStore extends Store<GnosysUser> {
-  constructor(private firebaseUserQuery: FirebaseUserQuery) {
-    super({ ...firebaseUserQuery.getValue() });
+  constructor(query: FirebaseUserQuery) {
+    super({ ...query.getValue() });
   }
 }
 
@@ -62,12 +73,14 @@ export class GnosysUserQuery extends Query<GnosysUser> {
 
 // Gnosys user Actions
 
-export const UserUpdateAction = createAction(
+export const GnosysUserInitAction = createAction('Gnosys Init User');
+
+export const GnosysUserUpdateAction = createAction(
   'Gnosys User Update',
   props<{ uid: string }>()
 );
 
-export const UserSignUpAction = createAction(
+export const GnosysUserSignUpAction = createAction(
   'Gnosys User Sign up',
   props<{ data: GnosysUser }>()
 );
@@ -83,21 +96,31 @@ export class GnosysUserEffects {
     private gnosysUserService: GnosysUserService
   ) {}
 
+  initGnosysUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(GnosysUserInitAction),
+      tap(() =>
+        this.gnosysUserService.updateUser({ ...emptyUser(), role: undefined })
+      )
+    )
+  );
+
   updateGnosysUser$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(UserUpdateAction),
+      ofType(GnosysUserUpdateAction),
       map((payload) => this.query.userDoc(payload.uid)),
       tap((doc) =>
-        doc.subscribe((user) =>
-          this.gnosysUserService.updateUser(user as GnosysUser)
-        )
+        doc.pipe(take(1)).subscribe((user) => {
+          console.log('Update Gnosys User Effect', user);
+          this.gnosysUserService.updateUser(user as GnosysUser);
+        })
       )
     )
   );
 
   signupUser$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(UserSignUpAction),
+      ofType(GnosysUserSignUpAction),
       tap((payload) => {
         console.log('Signup Action Effect');
         this.query.updateUsersDoc(payload.data);

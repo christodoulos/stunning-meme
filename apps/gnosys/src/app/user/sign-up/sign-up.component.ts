@@ -5,7 +5,7 @@ import { Validators } from '@angular/forms';
 import {
   GnosysRoles,
   GnosysUserQuery,
-  UserSignUpAction,
+  GnosysUserSignUpAction,
 } from '../state/gnosys-user';
 import { SignOutAction } from '@nocode/auth';
 
@@ -39,8 +39,10 @@ export class SignUpComponent {
 
   doSignUp() {
     if (this.signupForm.valid) {
-      console.log('Form Valid', this.signupForm);
-      this.actions.dispatch(UserSignUpAction({ data: this.signupForm.value }));
+      console.log('SIGN-UP Component, Form Valid, will dispatch signup action');
+      this.actions.dispatch(
+        GnosysUserSignUpAction({ data: this.signupForm.value })
+      );
     }
   }
 }

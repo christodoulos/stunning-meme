@@ -6,6 +6,8 @@ import {
   FirebaseUserQuery,
 } from '@nocode/auth';
 
+import { GnosysUserInitAction } from './user/state';
+
 import { Actions } from '@datorama/akita-ng-effects';
 import { Router } from '@angular/router';
 
@@ -29,11 +31,15 @@ export class AppComponent {
     private actions: Actions,
     private router: Router
   ) {
+    console.log('APP component');
     this.loggedIn$.subscribe((isLoggedIn) => {
       if (isLoggedIn) {
+        console.log('APP component user is logged in');
         this.router.navigate(['user']);
       } else {
+        console.log('APP component user is logged out');
         this.router.navigate(['']);
+        this.actions.dispatch(GnosysUserInitAction());
       }
     });
   }
@@ -47,11 +53,13 @@ export class AppComponent {
   }
 
   login() {
+    console.log('APP component will dispatch GoogleSignInAction');
     this.actions.dispatch(GoogleSignInAction());
   }
 
   logout() {
-    this.actions.dispatch(SignOutAction);
+    console.log('APP component will dispatch SignOutAction');
+    this.actions.dispatch(SignOutAction());
   }
 
   onSelected(item: string) {

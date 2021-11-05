@@ -28,6 +28,7 @@ export function emptyUser(): FirebaseUser {
     email: '',
     photoURL: '',
     emailVerified: false,
+    loading: false,
   };
 }
 

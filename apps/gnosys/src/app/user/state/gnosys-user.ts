@@ -39,7 +39,7 @@ export function initGnosysUser(): GnosysUser {
 }
 
 @Injectable({ providedIn: 'root' })
-@StoreConfig({ name: 'user' })
+@StoreConfig({ name: 'guser' })
 export class GnosysUserStore extends Store<GnosysUser> {
   constructor(query: FirebaseUserQuery) {
     super({ ...query.getValue() });

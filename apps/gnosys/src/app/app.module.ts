@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { WidgetsModule } from '@nocode/widgets';
 import { AuthModule } from '@nocode/auth';
@@ -21,6 +22,7 @@ import { LogoComponent } from './logo/logo.component';
   declarations: [AppComponent, LogoComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     SvgIconsModule.forRoot({
       sizes: {
         xs: '10px',

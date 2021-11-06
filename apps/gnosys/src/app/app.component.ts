@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
 import {
   GoogleSignInAction,
   SignOutAction,
@@ -22,6 +22,7 @@ export class AppComponent {
   avatar$ = this.query.userPhotoURL$;
   loggedIn$ = this.query.loggedIn$;
   isLoading$ = this.query.isLoading$;
+  hello$ = this.http.get('/api');
 
   userMenuVisible = false;
   overlayVisible = false;
@@ -29,7 +30,8 @@ export class AppComponent {
   constructor(
     private query: FirebaseUserQuery,
     private actions: Actions,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {
     console.log('APP component');
     this.loggedIn$.subscribe((isLoggedIn) => {

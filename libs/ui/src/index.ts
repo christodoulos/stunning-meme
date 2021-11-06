@@ -4,3 +4,7 @@ export * from './lib/code-toolbar/code-toolbar.component';
 export * from './lib/file-name/file-name.component';
 export * from './lib/codemirror/codemirror.component';
 export * from './lib/alert/alert.component';
+export * from './lib/avatar-dropdown/avatar-dropdown.component';
+export * from './lib/avatar-circular/avatar-circular.component';
+export * from './lib/dropdown/dropdown.component';
+export * from './lib/simple-dropdown/simple-dropdown.component';

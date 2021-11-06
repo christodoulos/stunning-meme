@@ -2,9 +2,11 @@ import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions } from '@datorama/akita-ng-effects';
 
-import { FirebaseUserQuery } from '@nocode/auth';
-
-import { FirestoreQuery, GnosysUserUpdateAction } from '../state';
+import {
+  FirestoreQuery,
+  GnosysUserQuery,
+  GnosysUserUpdateAction,
+} from '../state';
 
 @Component({
   templateUrl: './user-landing.component.html',
@@ -12,14 +14,15 @@ import { FirestoreQuery, GnosysUserUpdateAction } from '../state';
 })
 export class UserLandingComponent implements OnDestroy {
   constructor(
-    private query: FirebaseUserQuery,
+    private query: GnosysUserQuery,
     private router: Router,
     private fquery: FirestoreQuery,
     private actions: Actions
   ) {}
 
   uid = this.query.getValue().uid;
-  displayName = this.query.getValue().displayName;
+  displayName$ = this.query.userDisplayName$;
+  email$ = this.query.userEmail$;
   isNewUser$ = this.fquery.isNewUser$(this.uid);
   subscription = this.isNewUser$.subscribe((isNew) => {
     if (isNew) {

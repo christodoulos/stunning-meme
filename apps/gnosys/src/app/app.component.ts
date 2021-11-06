@@ -63,6 +63,14 @@ export class AppComponent {
   }
 
   onSelected(item: string) {
+    switch (item) {
+      case 'Sign Out':
+        this.logout();
+        break;
+
+      default:
+        break;
+    }
     console.log(item);
   }
 }

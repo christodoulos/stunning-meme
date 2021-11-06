@@ -9,9 +9,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/auth"
-          ],
+          "outputs": ["dist/libs/auth"],
           "options": {
             "project": "libs/auth/ng-package.json"
           },
@@ -27,9 +25,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/auth"
-          ],
+          "outputs": ["coverage/libs/auth"],
           "options": {
             "jestConfig": "libs/auth/jest.config.js",
             "passWithNoTests": true
@@ -44,7 +40,8 @@
             ]
           }
         }
-      }
+      },
+      "tags": []
     },
     "gnosys": {
       "projectType": "application",
@@ -54,22 +51,15 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/gnosys",
             "index": "apps/gnosys/src/index.html",
             "main": "apps/gnosys/src/main.ts",
             "polyfills": "apps/gnosys/src/polyfills.ts",
             "tsConfig": "apps/gnosys/tsconfig.app.json",
-            "assets": [
-              "apps/gnosys/src/favicon.ico",
-              "apps/gnosys/src/assets"
-            ],
-            "styles": [
-              "apps/gnosys/src/styles.css"
-            ],
+            "assets": ["apps/gnosys/src/favicon.ico", "apps/gnosys/src/assets"],
+            "styles": ["apps/gnosys/src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -115,7 +105,10 @@
               "browserTarget": "gnosys:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "apps/gnosys/proxy.conf.json"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -134,9 +127,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/gnosys"
-          ],
+          "outputs": ["coverage/apps/gnosys"],
           "options": {
             "jestConfig": "apps/gnosys/jest.config.js",
             "passWithNoTests": true
@@ -146,7 +137,60 @@
           "builder": "@angular/fire:deploy",
           "options": {}
         }
-      }
+      },
+      "tags": []
+    },
+    "gnosys-api": {
+      "root": "apps/gnosys-api",
+      "sourceRoot": "apps/gnosys-api/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/gnosys-api",
+            "main": "apps/gnosys-api/src/main.ts",
+            "tsConfig": "apps/gnosys-api/tsconfig.app.json",
+            "assets": ["apps/gnosys-api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/gnosys-api/src/environments/environment.ts",
+                  "with": "apps/gnosys-api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "gnosys-api:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["apps/gnosys-api/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/gnosys-api"],
+          "options": {
+            "jestConfig": "apps/gnosys-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
     },
     "gnosys-e2e": {
       "root": "apps/gnosys-e2e",
@@ -168,16 +212,14 @@
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "outputs": [
-            "{options.outputFile}"
-          ],
+          "outputs": ["{options.outputFile}"],
           "options": {
-            "lintFilePatterns": [
-              "apps/gnosys-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/gnosys-e2e/**/*.{js,ts}"]
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["gnosys"]
     },
     "ui": {
       "projectType": "library",
@@ -187,9 +229,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/ui"
-          ],
+          "outputs": ["dist/libs/ui"],
           "options": {
             "project": "libs/ui/ng-package.json"
           },
@@ -205,9 +245,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/ui"
-          ],
+          "outputs": ["coverage/libs/ui"],
           "options": {
             "jestConfig": "libs/ui/jest.config.js",
             "passWithNoTests": true
@@ -216,13 +254,11 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/ui/src/**/*.ts",
-              "libs/ui/src/**/*.html"
-            ]
+            "lintFilePatterns": ["libs/ui/src/**/*.ts", "libs/ui/src/**/*.html"]
           }
         }
-      }
+      },
+      "tags": []
     },
     "widgets": {
       "projectType": "library",
@@ -232,9 +268,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/widgets"
-          ],
+          "outputs": ["dist/libs/widgets"],
           "options": {
             "project": "libs/widgets/ng-package.json"
           },
@@ -250,9 +284,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/widgets"
-          ],
+          "outputs": ["coverage/libs/widgets"],
           "options": {
             "jestConfig": "libs/widgets/jest.config.js",
             "passWithNoTests": true
@@ -267,40 +299,8 @@
             ]
           }
         }
-      }
-    }
-  },
-  "cli": {
-    "analytics": "e2554fb4-583f-4630-bae3-2410ae75bf80",
-    "defaultCollection": "@nrwl/angular",
-    "packageManager": "yarn"
-  },
-  "schematics": {
-    "@nrwl/angular": {
-      "application": {
-        "linter": "eslint"
       },
-      "library": {
-        "linter": "eslint"
-      },
-      "storybook-configuration": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/angular:application": {
-      "style": "css",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": {
-      "style": "css",
-      "linter": "eslint",
-      "unitTestRunner": "jest"
-    },
-    "@nrwl/angular:component": {
-      "style": "css"
+      "tags": []
     }
-  },
-  "defaultProject": "gnosys"
+  }
 }

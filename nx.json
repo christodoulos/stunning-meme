@@ -26,22 +26,37 @@
       }
     ]
   },
-  "projects": {
-    "auth": {
-      "tags": []
+  "cli": {
+    "analytics": "e2554fb4-583f-4630-bae3-2410ae75bf80",
+    "defaultCollection": "@nrwl/angular",
+    "packageManager": "yarn"
+  },
+  "generators": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
     },
-    "gnosys": {
-      "tags": []
+    "@nrwl/angular:application": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
     },
-    "gnosys-e2e": {
-      "tags": [],
-      "implicitDependencies": ["gnosys"]
+    "@nrwl/angular:library": {
+      "style": "css",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
     },
-    "ui": {
-      "tags": []
-    },
-    "widgets": {
-      "tags": []
+    "@nrwl/angular:component": {
+      "style": "css"
     }
-  }
+  },
+  "defaultProject": "gnosys"
 }

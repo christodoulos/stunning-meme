@@ -8,9 +8,8 @@ describe('FileNameComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FileNameComponent ]
-    })
-    .compileComponents();
+      declarations: [FileNameComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

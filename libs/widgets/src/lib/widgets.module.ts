@@ -13,7 +13,11 @@ import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.compo
     UiModule,
     AkitaNgEffectsModule.forFeature([AlertEffects]),
   ],
-  declarations: [BasicCodeEditorComponent, AlertsComponent, LoadingOverlayComponent],
+  declarations: [
+    BasicCodeEditorComponent,
+    AlertsComponent,
+    LoadingOverlayComponent,
+  ],
   exports: [BasicCodeEditorComponent, AlertsComponent, LoadingOverlayComponent],
 })
 export class WidgetsModule {}

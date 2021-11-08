@@ -43,6 +43,48 @@
       },
       "tags": []
     },
+    "data-interfaces": {
+      "projectType": "library",
+      "root": "libs/data-interfaces",
+      "sourceRoot": "libs/data-interfaces/src",
+      "prefix": "nocode",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/data-interfaces"],
+          "options": {
+            "project": "libs/data-interfaces/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/data-interfaces/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/data-interfaces/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/data-interfaces"],
+          "options": {
+            "jestConfig": "libs/data-interfaces/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/data-interfaces/src/**/*.ts",
+              "libs/data-interfaces/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "gnosys": {
       "projectType": "application",
       "root": "apps/gnosys",

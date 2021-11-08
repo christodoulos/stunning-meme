@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@nocode/auth": ["libs/auth/src/index.ts"],
+      "@nocode/data-interfaces": ["libs/data-interfaces/src/index.ts"],
       "@nocode/ui": ["libs/ui/src/index.ts"],
       "@nocode/widgets": ["libs/widgets/src/index.ts"]
     }

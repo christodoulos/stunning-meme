@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SvgIconsModule } from '@ngneat/svg-icon';
 import { allIcons } from './svg/all';
@@ -13,9 +13,15 @@ import { AvatarDropdownComponent } from './avatar-dropdown/avatar-dropdown.compo
 import { AvatarCircularComponent } from './avatar-circular/avatar-circular.component';
 import { SimpleDropdownComponent } from './simple-dropdown/simple-dropdown.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
+import { FormSignUpComponent } from './form-sign-up/form-sign-up.component';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, SvgIconsModule.forChild([...allIcons])],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SvgIconsModule.forChild([...allIcons]),
+  ],
   declarations: [
     CodeToolbarComponent,
     FileNameComponent,
@@ -25,6 +31,7 @@ import { DropdownComponent } from './dropdown/dropdown.component';
     AvatarCircularComponent,
     SimpleDropdownComponent,
     DropdownComponent,
+    FormSignUpComponent,
   ],
   exports: [
     CodeToolbarComponent,
@@ -35,6 +42,7 @@ import { DropdownComponent } from './dropdown/dropdown.component';
     AvatarCircularComponent,
     SimpleDropdownComponent,
     DropdownComponent,
+    FormSignUpComponent,
   ],
 })
 export class UiModule {}

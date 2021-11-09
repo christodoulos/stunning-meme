@@ -8,6 +8,7 @@ import { allIcons } from '@nocode/ui';
 
 import { LandingComponent } from './landing/landing.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 export const landingRoutes: Route[] = [
   {
@@ -15,10 +16,11 @@ export const landingRoutes: Route[] = [
     component: LandingComponent,
   },
   { path: 'signup', component: SignUpComponent },
+  { path: 'signin', component: SignInComponent },
 ];
 
 @NgModule({
-  declarations: [LandingComponent, SignUpComponent],
+  declarations: [LandingComponent, SignUpComponent, SignInComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(landingRoutes),

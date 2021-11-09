@@ -85,7 +85,7 @@
           src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
           alt="Workflow"
         /> -->
-        <gnosys-logo class="h-8 w-auto"></gnosys-logo>
+        <gnosys-logo class="h-8 w-auto cursor-auto" routerLink=""></gnosys-logo>
       </div>
       <div class="mt-5 flex-1 h-0 overflow-y-auto">
         <nav class="px-2 space-y-1">
@@ -359,7 +359,10 @@
           src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
           alt="Workflow"
         /> -->
-        <gnosys-logo class="h-8 w-auto"></gnosys-logo>
+        <gnosys-logo
+          class="h-8 w-auto cursor-pointer"
+          routerLink=""
+        ></gnosys-logo>
       </div>
       <div class="mt-5 flex-grow flex flex-col">
         <nav class="flex-1 px-2 pb-4 space-y-1">
@@ -756,7 +759,7 @@
                 rounded-md
                 cursor-pointer
               "
-              (click)="login()"
+              routerLink="signin"
               >Sign In</a
             >
           </div>

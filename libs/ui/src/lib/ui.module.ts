@@ -14,6 +14,7 @@ import { AvatarCircularComponent } from './avatar-circular/avatar-circular.compo
 import { SimpleDropdownComponent } from './simple-dropdown/simple-dropdown.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { FormSignUpComponent } from './form-sign-up/form-sign-up.component';
+import { FormCancelSubmitComponent } from './form-cancel-submit/form-cancel-submit.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { FormSignUpComponent } from './form-sign-up/form-sign-up.component';
     SimpleDropdownComponent,
     DropdownComponent,
     FormSignUpComponent,
+    FormCancelSubmitComponent,
   ],
   exports: [
     CodeToolbarComponent,
@@ -43,6 +45,7 @@ import { FormSignUpComponent } from './form-sign-up/form-sign-up.component';
     SimpleDropdownComponent,
     DropdownComponent,
     FormSignUpComponent,
+    FormCancelSubmitComponent,
   ],
 })
 export class UiModule {}

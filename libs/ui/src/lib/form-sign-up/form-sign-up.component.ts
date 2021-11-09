@@ -61,4 +61,12 @@ export class FormSignUpComponent implements OnInit {
       password: this.signUpForm.get('password').value,
     });
   }
+
+  onCancelClick() {
+    console.log('Cancel Click');
+  }
+
+  onSubmitClick() {
+    console.log('Submit Click');
+  }
 }

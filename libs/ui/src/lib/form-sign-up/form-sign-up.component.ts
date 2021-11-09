@@ -48,5 +48,17 @@ export class FormSignUpComponent implements OnInit {
     confirmPassword: new FormControl('', [Validators.required]),
   });
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('Form Sign Up component');
+  }
+
+  emitSignUp() {
+    this.signUp.emit({
+      username: this.signUpForm.get('email').value,
+      firstName: this.signUpForm.get('firstName').value,
+      lastName: this.signUpForm.get('lastName').value,
+      email: this.signUpForm.get('email').value,
+      password: this.signUpForm.get('password').value,
+    });
+  }
 }

@@ -4,12 +4,15 @@ import {
   GoogleSignInAction,
   SignOutAction,
   FirebaseUserQuery,
+  AwsAuthService,
 } from '@nocode/auth';
 
 import { GnosysUserInitAction } from './user/state';
 
 import { Actions } from '@datorama/akita-ng-effects';
 import { Router } from '@angular/router';
+
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'nocode-root',
@@ -31,7 +34,8 @@ export class AppComponent {
     private query: FirebaseUserQuery,
     private actions: Actions,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private aws: AwsAuthService
   ) {
     console.log('APP component');
     this.loggedIn$.subscribe((isLoggedIn) => {
@@ -44,6 +48,11 @@ export class AppComponent {
         this.actions.dispatch(GnosysUserInitAction());
       }
     });
+    const poolData = {
+      UserPoolId: environment.cognitoUserPoolId,
+      ClientId: environment.cognitoAppClientId,
+    };
+    console.log(aws.isLoggedIn(poolData));
   }
 
   toggleUserMenu() {

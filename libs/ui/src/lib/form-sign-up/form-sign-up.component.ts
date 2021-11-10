@@ -68,5 +68,12 @@ export class FormSignUpComponent implements OnInit {
 
   onSubmitClick() {
     console.log('Submit Click');
+    this.signUp.emit({
+      username: this.signUpForm.get('email').value,
+      firstName: this.signUpForm.get('firstName').value,
+      lastName: this.signUpForm.get('lastName').value,
+      email: this.signUpForm.get('email').value,
+      password: this.signUpForm.get('password').value,
+    });
   }
 }

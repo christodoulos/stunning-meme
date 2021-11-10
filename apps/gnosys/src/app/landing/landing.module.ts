@@ -5,6 +5,7 @@ import { SvgIconsModule } from '@ngneat/svg-icon';
 
 import { UiModule } from '@nocode/ui';
 import { allIcons } from '@nocode/ui';
+import { WidgetsModule } from '@nocode/widgets';
 
 import { LandingComponent } from './landing/landing.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
@@ -24,6 +25,7 @@ export const landingRoutes: Route[] = [
   imports: [
     CommonModule,
     RouterModule.forChild(landingRoutes),
+    WidgetsModule,
     UiModule,
     SvgIconsModule.forChild([...allIcons]),
   ],

@@ -15,6 +15,7 @@ import { SimpleDropdownComponent } from './simple-dropdown/simple-dropdown.compo
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { FormSignUpComponent } from './form-sign-up/form-sign-up.component';
 import { FormCancelSubmitComponent } from './form-cancel-submit/form-cancel-submit.component';
+import { TailwindButtonComponent } from './tailwind-button/tailwind-button.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { FormCancelSubmitComponent } from './form-cancel-submit/form-cancel-subm
     DropdownComponent,
     FormSignUpComponent,
     FormCancelSubmitComponent,
+    TailwindButtonComponent,
   ],
   exports: [
     CodeToolbarComponent,
@@ -46,6 +48,7 @@ import { FormCancelSubmitComponent } from './form-cancel-submit/form-cancel-subm
     DropdownComponent,
     FormSignUpComponent,
     FormCancelSubmitComponent,
+    TailwindButtonComponent,
   ],
 })
 export class UiModule {}

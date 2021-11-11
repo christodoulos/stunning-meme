@@ -12,9 +12,11 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./sign-in.component.css'],
 })
 export class SignInComponent implements OnInit {
-  constructor() {}
+  // constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log();
+  }
 
   onSignIn(credentials: Credentials) {
     console.log(credentials);

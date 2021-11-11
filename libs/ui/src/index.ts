@@ -8,3 +8,6 @@ export * from './lib/avatar-dropdown/avatar-dropdown.component';
 export * from './lib/avatar-circular/avatar-circular.component';
 export * from './lib/dropdown/dropdown.component';
 export * from './lib/simple-dropdown/simple-dropdown.component';
+export * from './lib/tailwind-button/tailwind-button.component';
+export * from './lib/form-cancel-submit/form-cancel-submit.component';
+export * from './lib/form-sign-up/form-sign-up.component';
